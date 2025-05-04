@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Adopt {{ animal.name }}</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f9f9f9;
+        margin: 0; padding: 0;
+        color: #333;
+    }
+    header {
+        background: #4CAF50;
+        color: white;
+        padding: 15px 20px;
+        text-align: center;
+    }
+    main {
+        max-width: 500px;
+        margin: 40px auto;
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+        margin-top: 0;
+        text-align: center;
+        color: #2e7d32;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    label {
+        margin-top: 15px;
+        font-weight: bold;
+    }
+    input[type="text"], input[type="tel"] {
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+    }
+    button {
+        margin-top: 25px;
+        background: #4CAF50;
+        color: white;
+        border: none;
+        padding: 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.3s ease;
+    }
+    button:hover {
+        background: #388E3C;
+    }
+    nav {
+        text-align: center;
+        margin-top: 20px;
+    }
+    nav a {
+        color: #4CAF50;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    nav a:hover {
+        text-decoration: underline;
+    }
+    .animal-info {
+        background: #e8f5e9;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+    }
+    @media (max-width: 600px) {
+        main {
+            margin: 20px 15px;
+        }
+    }
+</style>
+</head>
+<body>
+<header>
+    <h1>Adopt {{ animal.name }}</h1>
+</header>
+<main>
+    <div class="animal-info">
+        <p><strong>Name:</strong> {{ animal.name }}</p>
+        <p><strong>Species:</strong> {{ animal.species }}</p>
+        <p><strong>Age:</strong> {{ animal.age }}</p>
+        <p><strong>Description:</strong> {{ animal.description }}</p>
+    </div>
+    <form action="{{ url_for('adopt', animal_id=animal.id) }}" method="post">
+        <label for="adopter_name">Your Name:</label>
+        <input type="text" id="adopter_name" name="adopter_name" required />
+
+        <label for="adopter_contact">Contact Info:</label>
+        <input type="tel" id="adopter_contact" name="adopter_contact" required />
+
+        <button type="submit">Confirm Adoption</button>
+    </form>
+    <nav>
+        <a href="{{ url_for('index') }}">&larr; Back to Home</a>
+    </nav>
+</main>
+</body>
+</html>
+
